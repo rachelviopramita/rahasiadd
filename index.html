@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mami!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            /* Background gradasi warna pastel yang manis */
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            max-width: 450px;
+            width: 90%;
+            margin: 20px;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #d81b60;
+            margin-bottom: 5px;
+            font-size: 2.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Styling foto ala Polaroid vintage */
+        .polaroid {
+            background: #fff;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transform: rotate(-2deg);
+            margin: 25px auto;
+            border-radius: 5px;
+            transition: transform 0.3s;
+            width: 80%;
+        }
+
+        .polaroid:hover {
+            transform: rotate(1deg) scale(1.02);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: auto;
+            border-radius: 3px;
+        }
+
+        .btn {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.4);
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #d81b60;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 64, 129, 0.5);
+        }
+
+        /* Kotak pesan yang disembunyikan awalnya */
+        .message-box {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #fff3f6;
+            border-left: 5px solid #ff4081;
+            border-radius: 8px;
+            text-align: left;
+            animation: fadeIn 1s;
+        }
+
+        /* Container Slideshow yang disembunyikan awalnya */
+        .slideshow-container {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 1s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slideshow-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: opacity 1s ease-in-out;
+            object-fit: contain;
+            aspect-ratio: 4 / 3;
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        p {
+            color: #4a4a4a;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .signature {
+            font-weight: 600;
+            color: #d81b60;
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0.7;
+            border-radius: 50%;
+            animation: confetti-fall 3s linear infinite;
+            z-index: 5;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+/* Animasi Transisi Slideshow */
+        .fade-anim {
+            animation: fadeEffect 1s ease-in-out;
+        }
+
+        @keyframes fadeEffect {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="Serta Mulia.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="container">
+        <h1>Happy Birthday Mami yang ke 51! 🎉</h1>
+        
+        <div class="polaroid">
+            <img id="main-image" src="IMG_20260116_165754.jpg" alt="Mami dan Rachel">
+            </div>
+
+        <button class="btn" id="mainButton" onclick="handleClick()">Klik Buka Surat Cinta! 💌</button>
+        <div class="message-box" id="secretMessage">
+            <p>Wah, udah 51 tahun tapi di foto ini kok kita malah kayak kakak adik ya? (dd yang kanan kan? eh 😂).</p>
+            
+            <p>Selamat ulang tahun, surgaku! Semoga Mami selalu diberikan kesehatan, umur yang barokah, kesabaran yang seluas samudra (terutama ngadepin kelakuan anakmu ini hehe), dan rezeki yang nggak putus-putus.</p>
+            
+            <p>Doain dd juga ya Mi, biar KKN-nya lancar, magang aman, dan urusan tugas akhirnya lancar dan cepat lulus. Biar bisa cepet-cepet bikin Mami bangga terus dd bisa ngajak mami jalan-jalan!</p>
+            
+            <p>I love you to the moon and back! 💕 (Jangan lupa jatah traktirannya ya Mi 🍕).</p>
+            
+            <div class="signature">- Anakmu yang paling manis, Rachel ✨</div>
+        </div>
+
+        <div class="slideshow-container" id="slideshow">
+            <img id="slideshow-image" src="" alt="Slideshow Foto" style="display: none;">
+            <p id="slideshow-citation" style="font-size: 0.8rem; color: #777;"></p>
+        </div>
+    </div>
+
+    <script>
+        // Data foto untuk slideshow (semua 8 gambar)
+        const photoUrls = [
+            { url: "IMG_20220710_110126.jpg", source: "" },
+            { url: "IMG_20220710_105211.jpg", source: "" },
+            { url: "IMG-20230715-WA0106.jpg", source: "" },
+            { url: "IMG_20250215_153033.jpg", source: "" },
+            { url: "IMG_20250905_203812.jpg", source: "" },
+            { url: "IMG_20251225_130229.jpg", source: "" },
+            { url: "IMG_20260104_113237.webp", source: "" },
+            { url: "IMG_20260216_121603.jpg", source: "" }
+        ];
+
+        let currentPhotoIndex = 0;
+        let isSlideshowActive = false;
+        let slideshowInterval;
+        let musicStarted = false;
+
+        function handleClick() {
+            startConfetti();
+            
+            const mainButton = document.getElementById('mainButton');
+            const messageBox = document.getElementById('secretMessage');
+            const slideshowBox = document.getElementById('slideshow');
+            const music = document.getElementById('bgMusic');
+
+            // Memulai musik pada interaksi pertama (browsers memblokir autoplay)
+            if (!musicStarted) {
+                music.play().catch(e => console.log('Music play prevented:', e));
+                musicStarted = true;
+            }
+
+            if (mainButton.innerText === 'Klik Buka Surat Cinta! 💌') {
+                // Tampilkan Surat
+                messageBox.style.display = 'block';
+                slideshowBox.style.display = 'none';
+                mainButton.innerText = 'Buka Slideshow Foto! 📸';
+                mainButton.style.backgroundColor = '#d81b60';
+            } else if (mainButton.innerText === 'Buka Slideshow Foto! 📸') {
+                // Sembunyikan Surat dan Tampilkan Slideshow
+                messageBox.style.display = 'none';
+                slideshowBox.style.display = 'block';
+                mainButton.innerText = 'Sembunyikan Slideshow 🙈';
+                startSlideshow();
+            } else {
+                // Sembunyikan Slideshow dan Tampilkan Kembali Pilihan
+                slideshowBox.style.display = 'none';
+                mainButton.innerText = 'Buka Slideshow Foto! 📸';
+                stopSlideshow();
+            }
+        }
+
+        function startConfetti() {
+            for (let i = 0; i < 20; i++) {
+                createConfettiPiece();
+            }
+        }
+
+        function createConfettiPiece() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            document.body.appendChild(confetti);
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }
+
+        function startSlideshow() {
+            if (isSlideshowActive) return;
+            isSlideshowActive = true;
+            const citationText = document.getElementById('slideshow-citation');
+            
+            // Atur ulang ke gambar pertama dalam urutan
+            currentPhotoIndex = 0;
+            showSlide();
+
+            // Mulai loop slideshow otomatis
+            slideshowInterval = setInterval(() => {
+                currentPhotoIndex = (currentPhotoIndex + 1) % photoUrls.length;
+                showSlide();
+            }, 2000); // Ganti foto setiap 2 detik
+        }
+
+        
+        function showSlide() {
+            const slideshowImg = document.getElementById('slideshow-image');
+
+            // Hapus class animasi dulu biar bisa di-trigger ulang setiap foto ganti
+            slideshowImg.classList.remove('fade-anim');
+            
+            // Sedikit trik (reflow) biar browser mereset animasinya
+            void slideshowImg.offsetWidth; 
+
+            // Ganti sumber foto ke foto selanjutnya
+            slideshowImg.src = photoUrls[currentPhotoIndex].url;
+            slideshowImg.style.display = 'block'; 
+
+            // Pasang lagi class animasinya biar fotonya muncul pelan-pelan
+            slideshowImg.classList.add('fade-anim');
+        }
+
+        function stopSlideshow() {
+            if (!isSlideshowActive) return;
+            isSlideshowActive = false;
+            clearInterval(slideshowInterval);
+            const slideshowImg = document.getElementById('slideshow-image');
+            slideshowImg.style.display = 'none';
+        }
+
+    </script>
+</body>
+</html>
